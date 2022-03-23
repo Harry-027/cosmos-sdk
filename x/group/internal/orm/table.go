@@ -123,11 +123,11 @@ func (a table) Set(store sdk.KVStore, rowID RowID, newValue codec.ProtoMarshaler
 	}
 
 	pStore.Set(rowID, newValueEncoded)
-	for i, itc := range a.afterSet {
-		if err := itc(store, rowID, newValue, oldValue); err != nil {
-			return sdkerrors.Wrapf(err, "interceptor %d failed", i)
-		}
-	}
+	// for i, itc := range a.afterSet {
+	// 	if err := itc(store, rowID, newValue, oldValue); err != nil {
+	// 		return sdkerrors.Wrapf(err, "interceptor %d failed", i)
+	// 	}
+	// }
 	return nil
 }
 
