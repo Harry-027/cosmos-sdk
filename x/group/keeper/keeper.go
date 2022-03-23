@@ -338,7 +338,6 @@ func (k Keeper) UpdateTallyOfVPEndProposals(ctx sdk.Context) error {
 	if err != nil {
 		return err
 	}
-	defer it.Close()
 
 	var proposals []group.Proposal
 	var proposal group.Proposal
@@ -351,6 +350,10 @@ func (k Keeper) UpdateTallyOfVPEndProposals(ctx sdk.Context) error {
 			return err
 		}
 		proposals = append(proposals, proposal)
+	}
+	err = it.Close()
+	if err != nil {
+		return err
 	}
 
 	for _, proposal := range proposals {
