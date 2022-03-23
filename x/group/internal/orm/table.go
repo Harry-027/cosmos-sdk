@@ -2,6 +2,7 @@ package orm
 
 import (
 	"bytes"
+	"fmt"
 	"reflect"
 
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -122,12 +123,14 @@ func (a table) Set(store sdk.KVStore, rowID RowID, newValue codec.ProtoMarshaler
 		return sdkerrors.Wrapf(err, "failed to serialize %T", newValue)
 	}
 
+	fmt.Println("table set L", rowID)
 	pStore.Set(rowID, newValueEncoded)
 	// for i, itc := range a.afterSet {
 	// 	if err := itc(store, rowID, newValue, oldValue); err != nil {
 	// 		return sdkerrors.Wrapf(err, "interceptor %d failed", i)
 	// 	}
 	// }
+	fmt.Println("table set M")
 	return nil
 }
 
