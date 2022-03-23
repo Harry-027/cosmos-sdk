@@ -292,8 +292,8 @@ func createBlockSimulator(testingMode bool, tb testing.TB, w io.Writer, params P
 			opAndR := opAndRz[i]
 			op, r2 := opAndR.op, opAndR.rand
 			opMsg, futureOps, err := op(r2, app, ctx, accounts, config.ChainID)
-			fmt.Println(event)
 			opMsg.LogEvent(event)
+			fmt.Println("op", opMsg.Name, opMsg.Msg)
 
 			if !config.Lean || opMsg.OK {
 				logWriter.AddEntry(MsgEntry(header.Height, int64(i), opMsg))
