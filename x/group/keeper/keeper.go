@@ -356,6 +356,8 @@ func (k Keeper) UpdateTallyOfVPEndProposals(ctx sdk.Context) error {
 		return err
 	}
 
+	fmt.Printf("UpdateTallyOfVPEndProposals %d proposals\n", len(proposals))
+
 	for _, proposal := range proposals {
 		policyInfo, err := k.getGroupPolicyInfo(ctx, proposal.Address)
 		if err != nil {
