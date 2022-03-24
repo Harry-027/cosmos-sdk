@@ -125,12 +125,15 @@ func (a table) Set(store sdk.KVStore, rowID RowID, newValue codec.ProtoMarshaler
 
 	fmt.Println("table set L", rowID)
 	pStore.Set(rowID, newValueEncoded)
+	fmt.Println("table set M")
 	for i, itc := range a.afterSet {
+		fmt.Println("table set N i=", i)
 		if err := itc(store, rowID, newValue, oldValue); err != nil {
+			fmt.Println("table set O err=", err)
 			return sdkerrors.Wrapf(err, "interceptor %d failed", i)
 		}
 	}
-	fmt.Println("table set M")
+	fmt.Println("table set P OK FINISH")
 	return nil
 }
 
