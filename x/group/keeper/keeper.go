@@ -376,6 +376,7 @@ func (k Keeper) UpdateTallyOfVPEndProposals(ctx sdk.Context) error {
 
 		fmt.Println("k.proposalTable.Update BEFORE id=", proposal.Id)
 		if err := k.proposalTable.Update(ctx.KVStore(k.key), proposal.Id, &proposal); err != nil {
+			fmt.Println("k.proposalTable.Update err=", err)
 			return sdkerrors.Wrap(err, "proposal update")
 		}
 		fmt.Println("k.proposalTable.Update AFTER id=", proposal.Id)
